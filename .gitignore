@@ -1,0 +1,14 @@
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+.terraform.lock.hcl
+
+# OS & Python
+.DS_Store
+__pycache__/
+*.pyc
+
+# Local helper files
+sample_arch.txt
+gen_diagram.py
