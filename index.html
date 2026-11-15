@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NextOps AI — Serverless CloudOps, FinOps & DevSecOps Auditor</title>
+  <title>NextOps AI — Serverless CloudOps, FinOps & DevSecOps Agent</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -145,7 +145,7 @@
           <i class="fa-solid fa-award text-amber-400"></i>
           <span>AWS Builder Challenge: "No Pipeline, No Problem"</span>
         </div>
-        <p class="text-xs text-slate-400 mt-0.5">Generate Terraform code with <strong>Monthly Cost Estimations (FinOps)</strong> OR audit `.tf` files in sub-second latency.</p>
+        <p class="text-xs text-slate-400 mt-0.5">Generate production Terraform code with <strong>Monthly Cost Estimations (FinOps)</strong> OR audit `.tf` files in sub-second latency.</p>
       </div>
 
       <!-- Mode Selector Tabs -->
@@ -156,7 +156,7 @@
           class="tab-active px-4 py-2 rounded-lg text-xs font-bold transition flex items-center space-x-2 border border-transparent"
         >
           <i class="fa-solid fa-wand-magic-sparkles"></i>
-          <span>1. Cloud Architect + FinOps</span>
+          <span>1. Cloud Architect & FinOps</span>
         </button>
         <button 
           id="tabBtnAudit" 
@@ -180,18 +180,18 @@
           </div>
           <div class="space-y-2 max-w-2xl">
             <div class="bg-slate-900 border border-slate-800 p-4 rounded-2xl rounded-tl-sm text-sm text-slate-200 leading-relaxed shadow-sm">
-              <p class="font-bold text-white mb-1">Halo! Saya NextOps AI, CloudOps & FinOps Architect Anda. 🚀</p>
-              <p>Saya dapat merancang arsitektur AWS, menuliskan kode <strong>Terraform (IaC)</strong> lengkap, serta menghitung <strong>Estimasi Biaya Bulanan ($/bulan)</strong> dan tips penghematannya secara transparan.</p>
+              <p class="font-bold text-white mb-1">Hello! I am your Serverless CloudOps & FinOps Architect. 🚀</p>
+              <p>I can design AWS architectures, write production-ready <strong>Terraform (IaC)</strong> code, calculate transparent <strong>Monthly Cost Estimations ($/month)</strong>, and enforce security best practices.</p>
             </div>
             <!-- Quick Prompt Buttons -->
             <div class="flex flex-wrap gap-2 pt-1">
-              <button onclick="sendQuickPrompt('Buatkan arsitektur 2-Tier VPC di Singapura dengan 1 Public Subnet, 1 EC2 t3.micro Web Server, dan S3 bucket lengkap dengan estimasi biaya per bulan.')" class="text-xs px-3 py-1.5 rounded-lg bg-slate-800/80 hover:bg-slate-800 text-slate-300 hover:text-white border border-slate-700/80 transition cursor-pointer">
-                💰 2-Tier VPC & EC2 + Estimasi Biaya
+              <button onclick="sendQuickPrompt('Design a 2-Tier VPC in Singapore (ap-southeast-1) with 1 public subnet, 1 EC2 t3.micro web server in the public subnet, and an S3 bucket with monthly cost estimation.')" class="text-xs px-3 py-1.5 rounded-lg bg-slate-800/80 hover:bg-slate-800 text-slate-300 hover:text-white border border-slate-700/80 transition cursor-pointer">
+                💰 2-Tier VPC & EC2 + Cost Estimation
               </button>
-              <button onclick="sendQuickPrompt('Rancang arsitektur database PostgreSQL di AWS RDS dengan subnet privat, automated backup, dan rincian estimasi biaya bulanannya.')" class="text-xs px-3 py-1.5 rounded-lg bg-slate-800/80 hover:bg-slate-800 text-slate-300 hover:text-white border border-slate-700/80 transition cursor-pointer">
-                🛡️ RDS PostgreSQL + Estimasi Biaya
+              <button onclick="sendQuickPrompt('Design a secure PostgreSQL database on AWS RDS in Singapore (ap-southeast-1) with private subnets, automated backups, and monthly cost estimation.')" class="text-xs px-3 py-1.5 rounded-lg bg-slate-800/80 hover:bg-slate-800 text-slate-300 hover:text-white border border-slate-700/80 transition cursor-pointer">
+                🛡️ RDS PostgreSQL + Cost Estimation
               </button>
-              <button onclick="sendQuickPrompt('Rancang arsitektur Serverless REST API dengan AWS Lambda dan DynamoDB Table lengkap dengan estimasi biaya dan kelayakan Free Tier.')" class="text-xs px-3 py-1.5 rounded-lg bg-slate-800/80 hover:bg-slate-800 text-slate-300 hover:text-white border border-slate-700/80 transition cursor-pointer">
+              <button onclick="sendQuickPrompt('Design a serverless REST API with AWS Lambda and DynamoDB in Singapore (ap-southeast-1) with cost estimation and Free Tier eligibility.')" class="text-xs px-3 py-1.5 rounded-lg bg-slate-800/80 hover:bg-slate-800 text-slate-300 hover:text-white border border-slate-700/80 transition cursor-pointer">
                 🔥 Serverless REST API ($0 Scale-to-Zero)
               </button>
             </div>
@@ -206,7 +206,7 @@
           <input 
             id="userInput" 
             type="text" 
-            placeholder="Tanyakan arsitektur cloud AWS atau minta estimasi biaya dan kode Terraform..." 
+            placeholder="Ask for an AWS cloud architecture, request Terraform code, or get a FinOps cost estimation..." 
             class="flex-1 bg-transparent px-4 py-2.5 text-sm text-white placeholder-slate-500 focus:outline-none"
             autocomplete="off"
           />
@@ -215,7 +215,7 @@
             type="submit" 
             class="px-5 py-2.5 rounded-xl font-bold text-xs bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-400 hover:to-orange-500 text-slate-950 transition duration-200 shadow-lg shadow-orange-500/20 flex items-center space-x-1.5 cursor-pointer disabled:opacity-50"
           >
-            <span>Kirim</span>
+            <span>Send</span>
             <i class="fa-solid fa-paper-plane text-[10px]"></i>
           </button>
         </form>
@@ -229,7 +229,7 @@
       <div class="bg-slate-900/80 border border-slate-800 rounded-2xl p-3 flex flex-col sm:flex-row items-center justify-between gap-2.5">
         <div class="flex items-center space-x-2 text-xs text-slate-300">
           <i class="fa-solid fa-flask-vial text-amber-400"></i>
-          <span class="font-semibold">Preset Celah Keamanan (6 Security Pillars):</span>
+          <span class="font-semibold">Security Vulnerability Presets (6 Pillars):</span>
         </div>
         <div class="flex flex-wrap items-center gap-2">
           <button onclick="loadScenario('critical')" class="px-2.5 py-1.5 rounded-lg bg-rose-500/10 hover:bg-rose-500/20 text-rose-300 border border-rose-500/30 text-[11px] font-semibold transition cursor-pointer flex items-center space-x-1">
@@ -257,21 +257,21 @@
                 <i class="fa-solid fa-file-code text-orange-400"></i>
                 <span>Terraform Code Input (.tf)</span>
               </h2>
-              <p class="text-[11px] text-slate-400">Ketik, paste, atau pilih preset celah keamanan di atas</p>
+              <p class="text-[11px] text-slate-400">Type, paste, or select one of the security presets above</p>
             </div>
           </div>
 
           <textarea 
             id="auditCodeInput" 
             rows="16" 
-            placeholder="# Tempelkan kode Terraform (.tf) Anda di sini atau pilih salah satu preset celah keamanan di atas...&#10;resource &quot;aws_security_group&quot; &quot;allow_all&quot; {&#10;  ingress {&#10;    from_port   = 22&#10;    to_port     = 22&#10;    protocol    = &quot;tcp&quot;&#10;    cidr_blocks = [&quot;0.0.0.0/0&quot;]&#10;  }&#10;}"
+            placeholder="# Paste your Terraform (.tf) code here or choose a preset above...&#10;resource &quot;aws_security_group&quot; &quot;allow_all&quot; {&#10;  ingress {&#10;    from_port   = 22&#10;    to_port     = 22&#10;    protocol    = &quot;tcp&quot;&#10;    cidr_blocks = [&quot;0.0.0.0/0&quot;]&#10;  }&#10;}"
             class="w-full bg-slate-950 border border-slate-800 rounded-xl p-3 text-xs font-mono text-slate-200 placeholder-slate-600 focus:outline-none focus:border-orange-500/50 resize-none"
           ></textarea>
 
           <div class="flex items-center justify-between pt-1">
             <label class="text-xs text-slate-400 hover:text-slate-200 cursor-pointer flex items-center space-x-1.5">
               <i class="fa-solid fa-upload"></i>
-              <span>Upload file .tf lokal</span>
+              <span>Upload local .tf file</span>
               <input type="file" id="fileUploadInput" accept=".tf,.txt" class="hidden" onchange="handleFileUpload(event)">
             </label>
             <button 
@@ -280,7 +280,7 @@
               class="px-5 py-2.5 rounded-xl font-bold text-xs bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-400 hover:to-amber-400 text-slate-950 transition duration-200 shadow-lg shadow-orange-500/20 flex items-center space-x-1.5 cursor-pointer disabled:opacity-50"
             >
               <i class="fa-solid fa-shield-halved"></i>
-              <span>Pindai & Audit Keamanan</span>
+              <span>Scan & Audit Security</span>
             </button>
           </div>
         </div>
@@ -291,9 +291,9 @@
             <div>
               <h2 class="text-sm font-bold text-white flex items-center space-x-2">
                 <i class="fa-solid fa-square-poll-vertical text-emerald-400"></i>
-                <span>Hasil Audit & Rekomendasi DevSecOps</span>
+                <span>Audit Results & DevSecOps Mentoring</span>
               </h2>
-              <p class="text-[11px] text-slate-400">Analisis risiko, edukasi keamanan, dan perbaikan otomatis</p>
+              <p class="text-[11px] text-slate-400">Risk analysis, security education, and automated code remediation</p>
             </div>
             <span id="auditLatencyBadge" class="hidden font-mono text-[10px] px-2 py-0.5 rounded bg-slate-800 text-slate-400 border border-slate-700">0 ms</span>
           </div>
@@ -304,16 +304,16 @@
               <div class="w-12 h-12 rounded-2xl bg-slate-800/50 flex items-center justify-center text-slate-400 text-2xl">
                 <i class="fa-solid fa-microchip"></i>
               </div>
-              <p class="text-sm font-semibold text-slate-300">Belum Ada Analisis</p>
-              <p class="max-w-sm text-xs">Pilih salah satu <strong>Preset Celah Keamanan</strong> di atas atau tempelkan kode Terraform buatanmu, lalu tekan tombol <strong>Pindai & Audit Keamanan</strong>.</p>
+              <p class="text-sm font-semibold text-slate-300">No Analysis Yet</p>
+              <p class="max-w-sm text-xs">Choose a <strong>Security Preset</strong> above or paste your own Terraform code, then click <strong>Scan & Audit Security</strong>.</p>
             </div>
           </div>
 
           <!-- Download Hardened Code Section (hidden by default) -->
           <div id="hardenedDownloadSection" class="hidden pt-3 border-t border-slate-800 flex items-center justify-between">
-            <span class="text-xs text-emerald-400 flex items-center space-x-1.5">
+            <span class="text-xs text-emerald-400 flex items-center space-x-1.5 font-semibold">
               <i class="fa-solid fa-circle-check"></i>
-              <span>Remediated Code Tersedia di S3</span>
+              <span>Remediated Code Available on S3</span>
             </span>
             <a id="hardenedDownloadLink" href="#" target="_blank" download="main_hardened.tf" class="px-3.5 py-1.5 rounded-lg bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-300 border border-emerald-500/30 text-xs font-semibold flex items-center space-x-1.5 transition">
               <i class="fa-solid fa-download"></i>
@@ -334,12 +334,12 @@
 
     // Preset Scenarios
     const SCENARIOS = {
-      critical: `# Skenario 1: Celah Kritis (Port 22 Terbuka & Hardcoded AWS Keys)
+      critical: `# Scenario 1: Critical Ingress (Port 22 Open & Hardcoded AWS Keys)
 variable "aws_access_key" {
-  default = "AKIAIOSFODNN7EXAMPLE" # BAHAYA: Hardcoded credentials
+  default = "AKIAIOSFODNN7EXAMPLE" # Hardcoded AWS Access Key
 }
 variable "aws_secret_key" {
-  default = "wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY" # BAHAYA: Hardcoded secrets
+  default = "wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY" # Hardcoded AWS Secret Key
 }
 
 resource "aws_security_group" "web_insecure" {
@@ -350,28 +350,28 @@ resource "aws_security_group" "web_insecure" {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"] # BAHAYA: SSH terbuka ke seluruh internet
+    cidr_blocks = ["0.0.0.0/0"] # VULNERABILITY: SSH port open to entire internet
   }
 }`,
 
-      database: `# Skenario 2: Database Publik & S3 Tidak Terenkripsi
+      database: `# Scenario 2: Public RDS Database & Unencrypted S3 Bucket
 resource "aws_db_instance" "public_postgres" {
   allocated_storage   = 20
   engine              = "postgres"
   instance_class      = "db.t3.micro"
   username            = "dbadmin"
-  password            = var.db_password # Best practice: Gunakan variabel
-  publicly_accessible = true           # CELAH KRITIS: Database terbuka ke internet publik
-  storage_encrypted   = false          # CELAH KRITIS: Storage tidak terenkripsi
+  password            = var.db_password # Best practice: Use variable instead of plaintext
+  publicly_accessible = true           # CRITICAL FLAW: Database exposed to public internet
+  storage_encrypted   = false          # CRITICAL FLAW: Storage unencrypted at rest
   skip_final_snapshot = true
 }
 
 resource "aws_s3_bucket" "company_docs" {
   bucket = "company-internal-docs-2026"
-  # CELAH: S3 bucket tanpa enkripsi SSE-KMS & tanpa Block Public Access
+  # FLAW: S3 bucket missing SSE-KMS encryption & Public Access Block!
 }`,
 
-      iam: `# Skenario 3: IAM Privilege Escalation (Wildcard * Administrator)
+      iam: `# Scenario 3: IAM Privilege Escalation (Wildcard * Administrator)
 resource "aws_iam_role" "wildcard_lambda_role" {
   name = "overprivileged_lambda_execution_role"
 
@@ -393,13 +393,13 @@ resource "aws_iam_role_policy" "wildcard_admin_policy" {
     Version = "2012-10-17"
     Statement = [{
       Effect   = "Allow"
-      Action   = "*"   # BAHAYA: Izin wildcard penuh (Full Admin)
-      Resource = "*"   # BAHAYA: Berlaku untuk semua resource AWS
+      Action   = "*"   # CRITICAL FLAW: Full wildcard admin access
+      Resource = "*"   # CRITICAL FLAW: Applies across all AWS resources
     }]
   })
 }`,
 
-      imds: `# Skenario 4: Kerentanan SSRF (IMDSv1) & Port Database Terbuka
+      imds: `# Scenario 4: SSRF Vulnerability (IMDSv1) & Open Database Port
 resource "aws_security_group" "database_open" {
   name = "db-perimeter-sg"
 
@@ -407,7 +407,7 @@ resource "aws_security_group" "database_open" {
     from_port   = 5432
     to_port     = 5432
     protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"] # BAHAYA: Port database PostgreSQL terbuka ke internet!
+    cidr_blocks = ["0.0.0.0/0"] # CRITICAL FLAW: PostgreSQL port exposed to the internet!
   }
 }
 
@@ -415,12 +415,12 @@ resource "aws_instance" "backend_server" {
   ami           = "ami-0123456789abcdef0"
   instance_type = "t3.medium"
   
-  # BAHAYA: IMDSv2 tidak diwajibkan (Rentan terhadap SSRF Attack / Pencurian Kredensial IAM)
+  # FLAW: IMDSv2 not enforced (vulnerable to SSRF attacks & IAM credential theft)
   metadata_options {
     http_tokens = "optional"
   }
 
-  associate_public_ip_address = true # BAHAYA: Server privat diberi IP Publik
+  associate_public_ip_address = true # FLAW: Private backend assigned a public IP
 }`
     };
 
@@ -490,7 +490,7 @@ resource "aws_instance" "backend_server" {
         }
       } catch (err) {
         document.getElementById(loadingId)?.remove();
-        appendErrorMessage("Koneksi gagal: " + err.message);
+        appendErrorMessage("Connection failed: " + err.message);
       } finally {
         userInput.disabled = false;
         sendBtn.disabled = false;
@@ -517,7 +517,6 @@ resource "aws_instance" "backend_server" {
       const msgDiv = document.createElement("div");
       msgDiv.className = "flex items-start space-x-3";
 
-      // Render Markdown (termasuk tabel FinOps Cost) menggunakan marked.js
       let parsedHtml = marked.parse(data.reply);
 
       let downloadSection = "";
@@ -568,7 +567,7 @@ resource "aws_instance" "backend_server" {
         </div>
         <div class="bg-slate-900 border border-slate-800 p-4 rounded-2xl rounded-tl-sm text-xs text-slate-400 flex items-center space-x-2">
           <i class="fa-solid fa-circle-notch fa-spin text-orange-400"></i>
-          <span>NextOps AI sedang merancang arsitektur & menghitung estimasi biaya FinOps...</span>
+          <span>NextOps AI is designing cloud architecture & calculating FinOps spend...</span>
         </div>
       `;
       chatBox.appendChild(msgDiv);
@@ -609,7 +608,7 @@ resource "aws_instance" "backend_server" {
       const downloadLink = document.getElementById("hardenedDownloadLink");
 
       if (!code) {
-        alert("Silakan masukkan atau pilih salah satu preset celah keamanan terlebih dahulu!");
+        alert("Please paste your Terraform code or choose a preset first!");
         return;
       }
 
@@ -618,8 +617,8 @@ resource "aws_instance" "backend_server" {
       resultBox.innerHTML = `
         <div class="h-full flex flex-col items-center justify-center text-center p-8 text-slate-400 space-y-3">
           <i class="fa-solid fa-circle-notch fa-spin text-2xl text-orange-400"></i>
-          <p class="text-sm font-semibold text-white">Memindai Kode Terraform terhadap 6 Security Pillars...</p>
-          <p class="text-xs text-slate-500">Amazon Bedrock Nova sedang mengevaluasi kepatuhan AWS Well-Architected Framework...</p>
+          <p class="text-sm font-semibold text-white">Scanning Terraform Code Across 6 Security Pillars...</p>
+          <p class="text-xs text-slate-500">Amazon Bedrock Nova is evaluating CIS AWS Benchmark & Well-Architected compliance...</p>
         </div>
       `;
 
@@ -652,7 +651,7 @@ resource "aws_instance" "backend_server" {
           resultBox.innerHTML = `<div class="p-4 rounded-xl bg-rose-950/40 border border-rose-900/60 text-xs text-rose-300">Error: ${escapeHtml(data.error)}</div>`;
         }
       } catch (err) {
-        resultBox.innerHTML = `<div class="p-4 rounded-xl bg-rose-950/40 border border-rose-900/60 text-xs text-rose-300">Koneksi Gagal: ${escapeHtml(err.message)}</div>`;
+        resultBox.innerHTML = `<div class="p-4 rounded-xl bg-rose-950/40 border border-rose-900/60 text-xs text-rose-300">Connection Failed: ${escapeHtml(err.message)}</div>`;
       } finally {
         auditBtn.disabled = false;
       }
