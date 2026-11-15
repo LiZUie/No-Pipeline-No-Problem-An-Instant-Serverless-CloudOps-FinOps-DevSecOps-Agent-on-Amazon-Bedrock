@@ -24,6 +24,24 @@ REGION_PATTERNS = [
     r"\bregion\s+([a-zA-Z0-9-]+)\b"
 ]
 
+# Strict Unicode Emoji Stripper Regex
+EMOJI_PATTERN = re.compile(
+    r"[\U00010000-\U0010ffff"
+    r"\u2600-\u26ff"
+    r"\u2700-\u27bf"
+    r"\u2300-\u23ff"
+    r"\u2b50\u2b55\u200d\ufe0f"
+    r"]+", flags=re.UNICODE
+)
+
+def strip_emojis(text):
+    """Guarantees zero emojis in the output text."""
+    if not text:
+        return text
+    clean = EMOJI_PATTERN.sub('', text)
+    clean = re.sub(r' {2,}', ' ', clean)
+    return clean.strip()
+
 def detect_region(text):
     text_lower = text.lower()
     for p in REGION_PATTERNS:
@@ -41,26 +59,28 @@ def check_subnet_ambiguity(text):
     
     return has_multi_subnet and has_instance and not has_placement
 
-# Mode 1: Cloud Architect & FinOps System Prompt
+# Mode 1: Cloud Architect & FinOps System Prompt (Strictly NO emojis)
 ARCHITECT_SYSTEM_PROMPT = """You are NextOps AI, an elite Senior CloudOps & FinOps Architect specialized in AWS and Terraform.
 Your goal is to help users design scalable cloud infrastructure, provide rigorous monthly cost estimations for the target AWS region, and generate production-ready Terraform code.
 
+CRITICAL INSTRUCTION: Do NOT use any emojis, icons, or emoticons anywhere in your response. Maintain an executive, technical, and objective tone.
+
 You MUST structure your response with:
-### 1. 🏗️ Architectural Overview
-- Crisp architectural explanation and rationale for chosen AWS services.
+### 1. Architectural Overview
+- Clear architectural explanation and rationale for chosen AWS services.
 - Explicitly state the Target AWS Region and Subnet placement.
 
-### 2. 💰 FinOps Monthly Cost Estimation (Target Region)
-Provide a clear, realistic Markdown table estimating monthly costs based strictly on the target region's pricing:
-| AWS Resource | Spec / Capacity | Est. Monthly Cost (USD) | Free Tier Eligible? |
-|--------------|-----------------|-------------------------|---------------------|
+### 2. FinOps Monthly Cost Estimation (Target Region)
+Provide a structured Markdown table estimating monthly costs based strictly on the target region's pricing:
+| AWS Resource | Configuration / Capacity | Est. Monthly Cost (USD) | Free Tier Eligible |
+|--------------|--------------------------|-------------------------|--------------------|
 (Itemize each resource: EC2, EBS, RDS, S3, NAT Gateway, Data Transfer, etc.)
 
-- **💵 Total Estimated Cost: ~$XX.XX / month**
-- **🎁 Free Tier Eligibility:** Highlight which resources qualify under the AWS Free Tier (e.g. 750 hrs t2/t3.micro, 5GB S3, 25GB DynamoDB).
-- **💡 FinOps Optimization Tips:** Practical advice to minimize cloud spend in this region.
+- **Total Estimated Cost:** ~$XX.XX / month
+- **Free Tier Eligibility:** Detail which resources qualify under AWS Free Tier limits (e.g. 750 hrs t2/t3.micro, 5GB S3, 25GB DynamoDB).
+- **FinOps Optimization Recommendations:** Specific technical advice to optimize cloud spending in this region.
 
-### 3. 🛠️ Production-Ready Terraform Code
+### 3. Production-Ready Terraform Code
 Provide complete, secure, valid Terraform (HCL) code enclosed strictly in a ```hcl ... ``` code block. The `provider "aws"` block MUST configure the user's requested region:
 ```hcl
 provider "aws" {
@@ -68,27 +88,32 @@ provider "aws" {
 }
 ```
 
-### 4. 🛡️ AWS Well-Architected Framework Highlights
+### 4. Well-Architected Framework Considerations
 Key security, reliability, and cost-efficiency principles applied.
 Be concise, accurate, and professional."""
 
-# Mode 2: DevSecOps Auditor & Mentor System Prompt
+# Mode 2: DevSecOps Auditor & Mentor System Prompt (Strictly NO emojis)
 AUDITOR_SYSTEM_PROMPT = """You are NextOps DevSecOps Auditor, an elite AWS Security & Terraform Compliance Expert.
 Your task is to comprehensively analyze user-submitted Terraform (HCL) code against the AWS Well-Architected Security Pillar and CIS AWS Foundations Benchmark.
 
-You MUST inspect the code across ALL 6 Security Pillars:
-1. 🌐 Network & Perimeter Security (Open CIDRs 0.0.0.0/0 on port 22/3389/3306/5432, unencrypted HTTP port 80).
-2. 🔑 IAM & Credential Hygiene (Wildcard * actions/resources, plaintext hardcoded credentials/secrets).
-3. 🔒 Data Protection & Encryption (S3 SSE/KMS encryption, EBS volume encryption, RDS storage encryption).
-4. 🚫 Public Exposure & Isolation (S3 public access blocks, RDS publicly_accessible = true).
-5. 💻 Compute Hardening & SSRF (IMDSv2 enforcement http_tokens = "required", public IPs on private instances).
-6. 📊 Observability & FinOps (Missing access logs, orphaned expensive resources).
+CRITICAL INSTRUCTION: Do NOT use any emojis, icons, or emoticons anywhere in your response. Maintain an authoritative, technical, and precise tone.
+
+You MUST inspect the code across all 6 Security Pillars:
+1. Network & Perimeter Security (Open CIDRs 0.0.0.0/0 on port 22/3389/3306/5432, unencrypted HTTP port 80).
+2. IAM & Credential Hygiene (Wildcard * actions/resources, plaintext hardcoded credentials/secrets).
+3. Data Protection & Encryption (S3 SSE/KMS encryption, EBS volume encryption, RDS storage encryption).
+4. Public Exposure & Boundary Isolation (S3 public access blocks, RDS publicly_accessible = true).
+5. Compute Hardening & Metadata Protection (IMDSv2 enforcement http_tokens = "required", public IPs on private instances).
+6. Observability & Resource Lifecycle (Missing access logs, orphaned resources).
 
 Output Structure:
-## 🛡️ Security Health Score: [Score 0-100]/100 ([CRITICAL RISK / HIGH RISK / MODERATE / SECURE])
-### 🚨 Detected Security Findings (Grouped by 🔴 CRITICAL, 🟠 HIGH, 🟡 MEDIUM, 🟢 BEST PRACTICE)
-### 💡 DevSecOps Educational Mentoring (Explain why each flaw is dangerous in AWS production)
-### 🛠️ Hardened & Remediated Terraform Code (Complete secured code enclosed strictly in a ```hcl ... ``` code block)
+## Security Health Score: [Score 0-100]/100 ([CRITICAL RISK / HIGH RISK / MODERATE / SECURE])
+### Detected Security Findings
+Categorize findings strictly using text tags: [CRITICAL], [HIGH], [MEDIUM], [BEST PRACTICE].
+### DevSecOps Remediation & Rationale
+Explain why each flaw presents an operational risk in production and how the recommended pattern mitigates it.
+### Hardened & Remediated Terraform Code
+Provide the complete, corrected, and hardened production-ready Terraform code enclosed strictly in a ```hcl ... ``` code block.
 """
 
 def lambda_handler(event, context):
@@ -116,6 +141,21 @@ def lambda_handler(event, context):
         user_prompt = query_params.get('prompt', '')
         mode = query_params.get('mode', 'generate')
 
+        # If accessed from browser without query params, serve index.html directly
+        if not user_prompt:
+            accept_header = event.get('headers', {}).get('accept', '')
+            if 'text/html' in accept_header or event.get('rawPath', '') == '/':
+                if os.path.exists('index.html'):
+                    with open('index.html', 'r', encoding='utf-8') as f:
+                        html_content = f.read()
+                    return {
+                        'statusCode': 200,
+                        'headers': {
+                            'Content-Type': 'text/html; charset=utf-8'
+                        },
+                        'body': html_content
+                    }
+
     if not user_prompt:
         return build_response(200, {
             'message': 'NextOps CloudOps, FinOps & DevSecOps Agent is Ready. Please submit an architectural prompt or Terraform code via POST/GET.',
@@ -125,7 +165,7 @@ def lambda_handler(event, context):
     # Mode 2: AUDIT MODE (Directly audit submitted .tf code)
     if mode == "audit":
         system_prompt = AUDITOR_SYSTEM_PROMPT
-        user_message = f"Please audit and security-scan this Terraform code, identify misconfigurations across all 6 AWS security pillars, provide an objective security score (0-100), educational mentoring, and produce hardened code:\n\n```hcl\n{user_prompt}\n```"
+        user_message = f"Please audit and security-scan this Terraform code, identify misconfigurations across all 6 AWS security pillars, provide an objective security score (0-100), educational mentoring, and produce hardened code without using any emojis:\n\n```hcl\n{user_prompt}\n```"
     
     # Mode 1: GENERATE MODE (Validate Region & Subnet Placement Ambiguity)
     else:
@@ -133,17 +173,17 @@ def lambda_handler(event, context):
         detected_reg = detect_region(user_prompt)
         if not detected_reg:
             warning_msg = (
-                "### ⚠️ Target AWS Region Required!\n\n"
-                "To compute accurate monthly cost estimations (**FinOps**) and ensure data residency compliance (*data sovereignty / compliance*), you must specify a **Target AWS Region** for your architecture.\n\n"
-                "Please specify an AWS region code or geographic location, for example:\n"
-                "- 🇸🇬 **Singapore** (`ap-southeast-1`)\n"
-                "- 🇮🇩 **Jakarta** (`ap-southeast-3`)\n"
-                "- 🇺🇸 **US East / N. Virginia** (`us-east-1`)\n"
-                "- 🇯🇵 **Tokyo** (`ap-northeast-1`)\n"
-                "- 🇩🇪 **Frankfurt** (`eu-central-1`)\n"
-                "- 🇦🇺 **Sydney** (`ap-southeast-2`)\n\n"
+                "### Target AWS Region Required\n\n"
+                "To calculate accurate monthly cost estimates (FinOps) and ensure data residency compliance, you must specify a **Target AWS Region** in your architectural prompt.\n\n"
+                "Supported regions include:\n"
+                "- Singapore (`ap-southeast-1`)\n"
+                "- Jakarta (`ap-southeast-3`)\n"
+                "- US East / N. Virginia (`us-east-1`)\n"
+                "- Tokyo (`ap-northeast-1`)\n"
+                "- Frankfurt (`eu-central-1`)\n"
+                "- Sydney (`ap-southeast-2`)\n\n"
                 "**Example Prompt:**\n"
-                "> *\"Design a 2-Tier VPC in **Singapore (ap-southeast-1)** with 1 EC2 in the public subnet...\"*"
+                "> *\"Design a 2-Tier VPC in Singapore (ap-southeast-1) with 1 EC2 instance in the public subnet...\"*"
             )
             return build_response(200, {
                 'session_id': 'validation-required-region',
@@ -158,17 +198,17 @@ def lambda_handler(event, context):
         # 2. Validate Subnet Placement Ambiguity (Interactive Clarification)
         if check_subnet_ambiguity(user_prompt):
             clarification_msg = (
-                "### ❓ Subnet Placement Clarification Required\n\n"
-                "Your requested architecture includes **multiple subnets (Public and Private Subnets)**, but the placement of your EC2 instance has not been specified.\n\n"
-                "To ensure the Terraform architecture precisely aligns with your needs, where would you like to place this EC2 instance?\n\n"
-                "**1. 🌐 Public Subnet (Web Server / Ingress):**\n"
-                "Select this if the EC2 instance acts as a Web Server, Frontend, or Bastion Host that requires direct internet access.\n\n"
-                "**2. 🔒 Private Subnet (Backend / Database):**\n"
-                "Select this if the EC2 instance serves as an internal API, backend worker, or database that must be isolated from the internet for security.\n\n"
+                "### Subnet Placement Clarification Required\n\n"
+                "Your requested architecture includes multiple subnets (Public and Private), but the placement of your EC2 instance has not been specified.\n\n"
+                "Please clarify the intended tier for this instance:\n\n"
+                "**1. Public Subnet (Web / Ingress Tier):**\n"
+                "Select this if the EC2 instance acts as a Web Server, Frontend, or Bastion Host that requires direct public internet routing.\n\n"
+                "**2. Private Subnet (Backend / Database Tier):**\n"
+                "Select this if the EC2 instance serves as an internal API, application backend, or database that must be isolated from the public internet.\n\n"
                 "---\n"
-                "💡 **Please reply with one of the following prompt options:**\n"
-                f"- *\"{user_prompt.strip()} **in the public subnet**\"*\n"
-                f"- *\"{user_prompt.strip()} **in the private subnet**\"*"
+                "**Please reply with one of the following prompt options:**\n"
+                f"- *\"{user_prompt.strip()} in the public subnet\"*\n"
+                f"- *\"{user_prompt.strip()} in the private subnet\"*"
             )
             return build_response(200, {
                 'session_id': 'validation-subnet-clarification',
@@ -181,7 +221,7 @@ def lambda_handler(event, context):
             })
 
         system_prompt = ARCHITECT_SYSTEM_PROMPT
-        user_message = f"{user_prompt}\n\nTarget Region detected: {detected_reg}. Please provide the architecture, FinOps Monthly Cost Estimation table for {detected_reg}, and Terraform HCL code configured for this region."
+        user_message = f"{user_prompt}\n\nTarget Region detected: {detected_reg}. Please provide the architecture, FinOps Monthly Cost Estimation table for {detected_reg}, and Terraform HCL code configured for this region without using emojis."
 
     try:
         # 2. Invoke Amazon Bedrock (Nova Micro)
@@ -199,36 +239,46 @@ def lambda_handler(event, context):
         stop_reason = bedrock_response.get('stopReason')
         latency = bedrock_response.get('metrics', {}).get('latencyMs', 0)
         session_id = f"session-{uuid.uuid4().hex[:8]}"
+        
+        raw_content = ""
+        try:
+            raw_content = bedrock_response['output']['message']['content'][0]['text']
+        except Exception:
+            raw_content = ""
 
         # Handle Bedrock automated content filter trigger gracefully
-        if stop_reason == 'content_filtered':
+        is_content_filtered = (stop_reason == 'content_filtered') or ('blocked by our content filter' in raw_content.lower())
+
+        if is_content_filtered:
             ai_reply = (
-                "## 🛡️ Security Health Score: 0/100 (CRITICAL - SENSITIVE PATTERN DETECTED)\n\n"
-                "### 🚨 Amazon Bedrock Automated Guardrail Alert\n"
-                "The submitted Terraform code contains sensitive credential patterns or plaintext passwords that triggered the **AWS Bedrock Automated Security Guardrail**.\n\n"
-                "### 💡 DevSecOps Educational Mentoring\n"
-                "- **Why is this hazardous?** Storing plaintext passwords or API keys in IaC files creates a severe risk of credential leakage in version control (Git repositories).\n"
-                "- **AWS Best Practice:** Always use **AWS Secrets Manager** (`aws_secretsmanager_secret`), AWS SSM Parameter Store, or declare sensitive variables (`sensitive = true`).\n\n"
+                "## Security Health Score: 0/100 ([CRITICAL RISK - SENSITIVE PATTERN DETECTED])\n\n"
+                "### Automated Guardrail Finding\n"
+                "[CRITICAL] The submitted Terraform code contains sensitive credential patterns or plaintext passwords that triggered the AWS automated security filter.\n\n"
+                "### DevSecOps Remediation & Rationale\n"
+                "- Risk Analysis: Storing plaintext passwords or API keys in IaC files creates a severe risk of credential leakage in version control (Git repositories).\n"
+                "- Remediation Pattern: Always use AWS Secrets Manager (`aws_secretsmanager_secret`), AWS SSM Parameter Store, or declare sensitive variables (`sensitive = true`).\n\n"
+                "### Hardened & Remediated Terraform Code\n"
                 "```hcl\n"
-                "# Secure pattern using sensitive variable:\n"
+                "# Secure pattern using sensitive variable and Secrets Manager:\n"
                 "variable \"db_password\" {\n"
                 "  description = \"Database password managed externally\"\n"
                 "  type        = string\n"
                 "  sensitive   = true\n"
+                "}\n\n"
+                "resource \"aws_db_instance\" \"secure_postgres\" {\n"
+                "  allocated_storage   = 20\n"
+                "  engine              = \"postgres\"\n"
+                "  instance_class      = \"db.t3.micro\"\n"
+                "  username            = \"dbadmin\"\n"
+                "  password            = var.db_password\n"
+                "  publicly_accessible = false\n"
+                "  storage_encrypted   = true\n"
+                "  skip_final_snapshot = true\n"
                 "}\n"
                 "```"
             )
-            return build_response(200, {
-                'session_id': session_id,
-                'mode': mode,
-                'reply': ai_reply,
-                'terraform_code': None,
-                'download_url': None,
-                'latency_ms': latency,
-                'model': 'Amazon Nova Micro + AWS Guardrail'
-            })
-
-        ai_reply = bedrock_response['output']['message']['content'][0]['text']
+        else:
+            ai_reply = strip_emojis(raw_content)
 
         # Extract Terraform code block
         terraform_code = extract_terraform_code(ai_reply)
