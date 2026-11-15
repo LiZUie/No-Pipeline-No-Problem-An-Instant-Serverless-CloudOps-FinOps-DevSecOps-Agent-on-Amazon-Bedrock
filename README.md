@@ -1,0 +1,2 @@
+# No-Pipeline-No-Problem-An-Instant-Serverless-CloudOps-FinOps-DevSecOps-Agent-on-Amazon-Bedrock
+Traditional IaC pipelines are slow and costly. We built a pure serverless AI agent on AWS Lambda and Amazon Bedrock Nova Micro. In under 3 seconds, it generates Terraform code, calculates regional FinOps costs, and auto-remediates security vulnerabilities across 6 CIS pillars—with zero servers and zero pipelines.
