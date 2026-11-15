@@ -4,6 +4,7 @@
 [![Amazon Bedrock](https://img.shields.io/badge/Amazon%20Bedrock-Nova%20Micro-00A4A6?logo=amazon&logoColor=white)](https://aws.amazon.com/bedrock/)
 [![Terraform](https://img.shields.io/badge/IaC-Terraform%20v1.x-844FBA?logo=terraform&logoColor=white)](https://www.terraform.io/)
 [![Python](https://img.shields.io/badge/Runtime-Python%203.12-3776AB?logo=python&logoColor=white)](https://www.python.org/)
+[![Jupyter Notebook](https://img.shields.io/badge/Jupyter%20Notebook-Demonstration-F37626?logo=jupyter&logoColor=white)](NextOps_AI_Demonstration.ipynb)
 [![Status](https://img.shields.io/badge/AWS%20Builder%20Challenge-Completed-success)]()
 
 > **Submission for the AWS Builder Community Challenge: *"Weekend Challenge: No Pipeline, No Problem"***
