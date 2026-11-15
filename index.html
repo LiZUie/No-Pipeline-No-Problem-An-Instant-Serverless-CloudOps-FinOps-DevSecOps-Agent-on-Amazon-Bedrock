@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,7 +17,6 @@
 
   <script>
     tailwind.config = {
-      darkMode: 'class',
       theme: {
         extend: {
           fontFamily: {
@@ -25,18 +24,14 @@
             mono: ['JetBrains Mono', 'ui-monospace', 'monospace'],
           },
           colors: {
-            brand: {
-              50: '#f0fdfa',
-              500: '#14b8a6',
-              600: '#0d9488',
-            },
-            surface: {
-              base: '#090a0f',
-              panel: '#0e111a',
-              card: '#141824',
-              hover: '#1b2132',
-              border: '#1f2639',
-              active: '#27314a'
+            aws: {
+              orange: '#f97316',
+              orangeHover: '#ea580c',
+              dark: '#0f172a',
+              card: '#ffffff',
+              border: '#e2e8f0',
+              bg: '#f8fafc',
+              surface: '#f1f5f9'
             }
           }
         }
@@ -47,13 +42,13 @@
   <style>
     /* Custom Scrollbar */
     ::-webkit-scrollbar { width: 5px; height: 5px; }
-    ::-webkit-scrollbar-track { background: #090a0f; }
-    ::-webkit-scrollbar-thumb { background: #27314a; border-radius: 4px; }
-    ::-webkit-scrollbar-thumb:hover { background: #3b4766; }
+    ::-webkit-scrollbar-track { background: #f8fafc; }
+    ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
 
-    /* Precision dot background */
-    .bg-grid-pattern {
-      background-image: radial-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+    /* Crisp dot background */
+    .bg-grid-light {
+      background-image: radial-gradient(rgba(15, 23, 42, 0.08) 1px, transparent 1px);
       background-size: 20px 20px;
     }
 
@@ -61,29 +56,29 @@
     .markdown-content {
       font-size: 13px;
       line-height: 1.65;
-      color: #cbd5e1;
+      color: #334155;
     }
     .markdown-content h2 {
-      font-size: 14.5px;
+      font-size: 15px;
       font-weight: 700;
-      color: #f8fafc;
+      color: #0f172a;
       margin-top: 18px;
       margin-bottom: 8px;
       padding-bottom: 4px;
-      border-bottom: 1px solid #1f2639;
+      border-bottom: 1px solid #e2e8f0;
       letter-spacing: -0.01em;
     }
     .markdown-content h3 {
-      font-size: 13px;
+      font-size: 13.5px;
       font-weight: 600;
-      color: #e2e8f0;
+      color: #0f172a;
       margin-top: 14px;
       margin-bottom: 6px;
     }
     .markdown-content h4 {
       font-size: 12px;
       font-weight: 600;
-      color: #94a3b8;
+      color: #64748b;
       margin-top: 10px;
       margin-bottom: 4px;
       text-transform: uppercase;
@@ -93,7 +88,7 @@
       margin-bottom: 10px;
     }
     .markdown-content ul, .markdown-content ol {
-      margin-left: 18px;
+      margin-left: 20px;
       margin-bottom: 10px;
       list-style-type: disc;
     }
@@ -106,18 +101,19 @@
       margin: 14px 0;
       font-size: 11.5px;
       font-family: 'JetBrains Mono', monospace;
-      border: 1px solid #1f2639;
-      background: #0e111a;
+      border: 1px solid #e2e8f0;
+      background: #ffffff;
       border-radius: 6px;
       overflow: hidden;
+      box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.03);
     }
     .markdown-content th {
-      background-color: #141824;
-      color: #94a3b8;
+      background-color: #f8fafc;
+      color: #475569;
       font-weight: 600;
       padding: 9px 12px;
-      border-bottom: 1px solid #1f2639;
-      border-right: 1px solid #1f2639;
+      border-bottom: 1px solid #e2e8f0;
+      border-right: 1px solid #e2e8f0;
       text-align: left;
       font-size: 11px;
       text-transform: uppercase;
@@ -125,54 +121,54 @@
     }
     .markdown-content td {
       padding: 8px 12px;
-      border-bottom: 1px solid #1f2639;
-      border-right: 1px solid #1f2639;
-      color: #cbd5e1;
+      border-bottom: 1px solid #e2e8f0;
+      border-right: 1px solid #e2e8f0;
+      color: #334155;
     }
     .markdown-content tr:last-child td {
       border-bottom: none;
     }
     .markdown-content tr:hover td {
-      background-color: #171c2b;
+      background-color: #f1f5f9;
     }
     .markdown-content code:not(pre code) {
-      background-color: #141824;
+      background-color: #f1f5f9;
       padding: 2px 5px;
       border-radius: 4px;
-      color: #38bdf8;
+      color: #ea580c;
       font-family: 'JetBrains Mono', monospace;
       font-size: 11px;
-      border: 1px solid #1f2639;
+      border: 1px solid #e2e8f0;
     }
     .markdown-content pre {
-      background-color: #07090e !important;
-      border: 1px solid #1f2639;
+      background-color: #0f172a !important;
+      border: 1px solid #1e293b;
       padding: 12px 14px;
       border-radius: 8px;
       overflow-x: auto;
       margin: 12px 0;
-      position: relative;
+      box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.05);
     }
     .markdown-content pre code {
       background-color: transparent;
       padding: 0;
-      color: #e2e8f0;
+      color: #f8fafc;
       font-family: 'JetBrains Mono', monospace;
       font-size: 11.5px;
       line-height: 1.5;
     }
     .markdown-content blockquote {
-      border-left: 2px solid #38bdf8;
+      border-left: 3px solid #f97316;
       padding-left: 12px;
       margin: 10px 0;
-      color: #94a3b8;
-      background: #0e111a;
+      color: #475569;
+      background: #fff7ed;
       padding-top: 6px;
       padding-bottom: 6px;
       border-radius: 0 4px 4px 0;
     }
 
-    /* Severity Badges */
+    /* Severity Badges (High Contrast Light Mode) */
     .badge-critical {
       display: inline-flex;
       align-items: center;
@@ -181,9 +177,9 @@
       font-family: 'JetBrains Mono', monospace;
       font-size: 10px;
       font-weight: 700;
-      background: rgba(239, 68, 68, 0.12);
-      color: #f87171;
-      border: 1px solid rgba(239, 68, 68, 0.3);
+      background: #fef2f2;
+      color: #dc2626;
+      border: 1px solid #fecaca;
       letter-spacing: 0.05em;
     }
     .badge-high {
@@ -194,9 +190,9 @@
       font-family: 'JetBrains Mono', monospace;
       font-size: 10px;
       font-weight: 700;
-      background: rgba(245, 158, 11, 0.12);
-      color: #fbbf24;
-      border: 1px solid rgba(245, 158, 11, 0.3);
+      background: #fffbeb;
+      color: #d97706;
+      border: 1px solid #fde68a;
       letter-spacing: 0.05em;
     }
     .badge-medium {
@@ -207,9 +203,9 @@
       font-family: 'JetBrains Mono', monospace;
       font-size: 10px;
       font-weight: 700;
-      background: rgba(59, 130, 246, 0.12);
-      color: #60a5fa;
-      border: 1px solid rgba(59, 130, 246, 0.3);
+      background: #eff6ff;
+      color: #2563eb;
+      border: 1px solid #bfdbfe;
       letter-spacing: 0.05em;
     }
     .badge-best-practice {
@@ -220,46 +216,46 @@
       font-family: 'JetBrains Mono', monospace;
       font-size: 10px;
       font-weight: 700;
-      background: rgba(16, 185, 129, 0.12);
-      color: #34d399;
-      border: 1px solid rgba(16, 185, 129, 0.3);
+      background: #ecfdf5;
+      color: #059669;
+      border: 1px solid #a7f3d0;
       letter-spacing: 0.05em;
     }
   </style>
 </head>
 
-<body class="bg-surface-base text-slate-200 min-h-screen flex flex-col font-sans antialiased bg-grid-pattern selection:bg-slate-700 selection:text-white">
+<body class="bg-aws-bg text-slate-900 min-h-screen flex flex-col font-sans antialiased bg-grid-light selection:bg-orange-100 selection:text-orange-900">
 
-  <!-- Top Navigation Header -->
-  <header class="border-b border-surface-border bg-surface-panel/95 backdrop-blur sticky top-0 z-50">
+  <!-- Top Navigation Header (Clean White + AWS Orange Accent) -->
+  <header class="border-b border-aws-border bg-white sticky top-0 z-50 shadow-sm">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
       
       <!-- Brand & Project Identity -->
       <div class="flex items-center space-x-3">
-        <div class="w-8 h-8 rounded-lg bg-surface-card border border-surface-border flex items-center justify-center text-slate-200">
+        <div class="w-8 h-8 rounded-lg bg-orange-50 border border-orange-200 flex items-center justify-center text-orange-600 shadow-sm">
           <i class="fa-solid fa-layer-group text-sm"></i>
         </div>
         <div class="flex items-center space-x-2.5">
-          <span class="font-bold tracking-tight text-white text-sm font-mono uppercase">NextOps</span>
-          <span class="h-3.5 w-px bg-surface-border"></span>
-          <span class="text-xs text-slate-400 font-medium hidden sm:inline">Serverless CloudOps, FinOps & DevSecOps Platform</span>
-          <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-surface-card border border-surface-border text-slate-400">v1.4.0</span>
+          <span class="font-bold tracking-tight text-slate-900 text-sm font-mono uppercase">NextOps</span>
+          <span class="h-3.5 w-px bg-aws-border"></span>
+          <span class="text-xs text-slate-600 font-medium hidden sm:inline">Serverless CloudOps, FinOps & DevSecOps Platform</span>
+          <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100 border border-slate-200 text-slate-600">v1.4.0</span>
         </div>
       </div>
 
       <!-- Infrastructure Status Strip -->
-      <div class="flex items-center space-x-4 text-xs font-mono">
-        <div class="hidden md:flex items-center space-x-2 text-slate-400 bg-surface-card px-2.5 py-1 rounded border border-surface-border">
-          <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+      <div class="flex items-center space-x-3 text-xs font-mono">
+        <div class="hidden md:flex items-center space-x-2 text-slate-700 bg-slate-50 px-2.5 py-1 rounded border border-slate-200">
+          <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
           <span>ap-southeast-1</span>
-          <span class="text-slate-600">&bull;</span>
-          <span class="text-slate-300">Nova Micro</span>
+          <span class="text-slate-300">&bull;</span>
+          <span class="text-slate-600">Nova Micro</span>
         </div>
         <a 
           href="https://github.com/LiZUie/No-Pipeline-No-Problem-An-Instant-Serverless-CloudOps-FinOps-DevSecOps-Agent-on-Amazon-Bedrock" 
           target="_blank" 
           rel="noopener noreferrer" 
-          class="flex items-center space-x-1.5 text-slate-400 hover:text-white transition px-2.5 py-1 rounded bg-surface-card border border-surface-border hover:border-slate-600"
+          class="flex items-center space-x-1.5 text-slate-600 hover:text-slate-900 transition px-2.5 py-1 rounded bg-slate-50 border border-slate-200 hover:border-slate-400"
         >
           <i class="fa-brands fa-github text-xs"></i>
           <span class="hidden sm:inline">Repository</span>
@@ -270,31 +266,31 @@
   </header>
 
   <!-- Challenge Subheader & Metadata Strip -->
-  <section class="border-b border-surface-border bg-surface-panel/50">
+  <section class="border-b border-aws-border bg-white/70 backdrop-blur">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 py-2.5 flex flex-col md:flex-row items-start md:items-center justify-between gap-2 text-xs">
-      <div class="flex items-center space-x-2 text-slate-300">
-        <span class="font-mono px-1.5 py-0.5 rounded bg-surface-card border border-surface-border text-[10px] text-amber-400 font-semibold uppercase">Challenge</span>
-        <span class="text-slate-400">AWS Weekend Challenge: "No Pipeline, No Problem"</span>
-        <span class="text-slate-600 hidden sm:inline">&bull;</span>
-        <span class="text-slate-400 hidden sm:inline">Zero Build Pipeline &bull; Pure Serverless Infrastructure</span>
+      <div class="flex items-center space-x-2 text-slate-700">
+        <span class="font-mono px-2 py-0.5 rounded bg-orange-50 border border-orange-200 text-[10px] text-orange-700 font-semibold uppercase">Challenge</span>
+        <span class="font-medium text-slate-800">AWS Weekend Challenge: "No Pipeline, No Problem"</span>
+        <span class="text-slate-300 hidden sm:inline">&bull;</span>
+        <span class="text-slate-500 hidden sm:inline">Zero Build Pipeline &bull; Pure Serverless Infrastructure</span>
       </div>
 
-      <!-- Segmented Control Tabs -->
-      <div class="flex items-center bg-surface-base p-0.5 rounded-lg border border-surface-border">
+      <!-- Segmented Control Tabs (Clean White & Orange Accent) -->
+      <div class="flex items-center bg-slate-100 p-0.5 rounded-lg border border-slate-200">
         <button 
           id="tabBtnGenerate" 
           onclick="switchTab('generate')" 
-          class="px-3.5 py-1.5 rounded-md text-xs font-medium font-mono transition flex items-center space-x-2 bg-surface-active text-white border border-surface-border shadow-sm"
+          class="px-3.5 py-1.5 rounded-md text-xs font-semibold font-mono transition flex items-center space-x-2 bg-white text-orange-700 border border-slate-200 shadow-sm"
         >
-          <i class="fa-solid fa-compass-drafting text-[11px] text-teal-400"></i>
+          <i class="fa-solid fa-compass-drafting text-[11px] text-orange-600"></i>
           <span>Architecture & FinOps</span>
         </button>
         <button 
           id="tabBtnAudit" 
           onclick="switchTab('audit')" 
-          class="px-3.5 py-1.5 rounded-md text-xs font-medium font-mono text-slate-400 hover:text-slate-200 transition flex items-center space-x-2"
+          class="px-3.5 py-1.5 rounded-md text-xs font-medium font-mono text-slate-600 hover:text-slate-900 transition flex items-center space-x-2"
         >
-          <i class="fa-solid fa-shield-halved text-[11px] text-slate-400"></i>
+          <i class="fa-solid fa-shield-halved text-[11px] text-slate-500"></i>
           <span>DevSecOps Static Scanner</span>
         </button>
       </div>
@@ -310,16 +306,16 @@
       <!-- Left Panel: Input & Quick Scenarios -->
       <div class="lg:w-5/12 flex flex-col space-y-4">
         
-        <div class="bg-surface-panel border border-surface-border rounded-xl p-4 flex flex-col space-y-3">
-          <div class="flex items-center justify-between border-b border-surface-border pb-2.5">
+        <div class="bg-white border border-aws-border rounded-xl p-4 shadow-sm flex flex-col space-y-3">
+          <div class="flex items-center justify-between border-b border-aws-border pb-2.5">
             <div class="flex items-center space-x-2">
-              <i class="fa-solid fa-terminal text-teal-400 text-xs"></i>
-              <h2 class="text-xs font-semibold uppercase tracking-wider text-slate-200 font-mono">Infrastructure Prompt</h2>
+              <i class="fa-solid fa-terminal text-orange-600 text-xs"></i>
+              <h2 class="text-xs font-bold uppercase tracking-wider text-slate-800 font-mono">Infrastructure Prompt</h2>
             </div>
-            <span class="text-[10px] font-mono text-slate-500">Target Region Enforced</span>
+            <span class="text-[10px] font-mono text-orange-600 font-semibold bg-orange-50 px-2 py-0.5 rounded border border-orange-200">Target Region Enforced</span>
           </div>
 
-          <p class="text-xs text-slate-400 leading-relaxed">
+          <p class="text-xs text-slate-600 leading-relaxed">
             Specify your architectural requirements and target AWS region. The agent calculates an itemized <strong>FinOps Monthly Cost Table</strong> and generates compliant <strong>Terraform (HCL)</strong> code.
           </p>
 
@@ -329,15 +325,15 @@
               id="userInput" 
               rows="5" 
               placeholder="e.g. Design a 2-Tier VPC in Singapore (ap-southeast-1) with 1 public subnet, 1 EC2 t3.micro web server in the public subnet, and an S3 bucket with monthly cost estimation..." 
-              class="w-full bg-surface-base border border-surface-border rounded-lg p-3 text-xs text-slate-100 placeholder-slate-600 focus:outline-none focus:border-slate-500 transition resize-none font-mono leading-relaxed"
+              class="w-full bg-slate-50 border border-aws-border rounded-lg p-3 text-xs text-slate-900 placeholder-slate-400 focus:outline-none focus:border-orange-500 focus:bg-white transition resize-none font-mono leading-relaxed"
             ></textarea>
 
             <div class="flex items-center justify-between">
-              <span class="text-[11px] text-slate-500 font-mono">Press Send or Enter</span>
+              <span class="text-[11px] text-slate-400 font-mono">Press Synthesize or Enter</span>
               <button 
                 id="sendBtn" 
                 type="submit" 
-                class="px-4 py-2 rounded-lg font-mono text-xs font-semibold bg-teal-500 hover:bg-teal-400 text-slate-950 transition duration-150 flex items-center space-x-2 disabled:opacity-40 cursor-pointer"
+                class="px-4 py-2 rounded-lg font-mono text-xs font-semibold bg-orange-600 hover:bg-orange-500 text-white transition duration-150 flex items-center space-x-2 disabled:opacity-40 cursor-pointer shadow-sm"
               >
                 <span>Synthesize</span>
                 <i class="fa-solid fa-arrow-right text-[10px]"></i>
@@ -347,42 +343,42 @@
         </div>
 
         <!-- Quick Architecture Presets -->
-        <div class="bg-surface-panel border border-surface-border rounded-xl p-4 space-y-2.5">
-          <div class="text-[11px] font-mono uppercase tracking-wider text-slate-400 font-semibold">
+        <div class="bg-white border border-aws-border rounded-xl p-4 shadow-sm space-y-2.5">
+          <div class="text-[11px] font-mono uppercase tracking-wider text-slate-500 font-semibold">
             Standard Reference Blueprints
           </div>
           <div class="flex flex-col space-y-2">
             <button 
               onclick="sendQuickPrompt('Design a 2-Tier VPC in Singapore (ap-southeast-1) with 1 public subnet, 1 EC2 t3.micro web server in the public subnet, and an S3 bucket with monthly cost estimation.')" 
-              class="w-full text-left p-2.5 rounded-lg bg-surface-card hover:bg-surface-hover border border-surface-border text-xs text-slate-300 hover:text-white transition flex items-center justify-between group cursor-pointer"
+              class="w-full text-left p-2.5 rounded-lg bg-slate-50 hover:bg-orange-50/50 border border-aws-border hover:border-orange-300 text-xs text-slate-700 hover:text-slate-900 transition flex items-center justify-between group cursor-pointer"
             >
               <div>
-                <span class="font-mono text-[10px] text-teal-400 font-semibold block">ARCH-VPC-01</span>
-                <span class="text-xs">2-Tier VPC with EC2 Web Server (ap-southeast-1)</span>
+                <span class="font-mono text-[10px] text-orange-600 font-bold block">ARCH-VPC-01</span>
+                <span class="text-xs font-medium">2-Tier VPC with EC2 Web Server (ap-southeast-1)</span>
               </div>
-              <i class="fa-solid fa-chevron-right text-[10px] text-slate-600 group-hover:text-slate-300 transition"></i>
+              <i class="fa-solid fa-chevron-right text-[10px] text-slate-400 group-hover:text-orange-600 transition"></i>
             </button>
 
             <button 
               onclick="sendQuickPrompt('Design a secure PostgreSQL database on AWS RDS in Singapore (ap-southeast-1) with private subnets, automated backups, and monthly cost estimation.')" 
-              class="w-full text-left p-2.5 rounded-lg bg-surface-card hover:bg-surface-hover border border-surface-border text-xs text-slate-300 hover:text-white transition flex items-center justify-between group cursor-pointer"
+              class="w-full text-left p-2.5 rounded-lg bg-slate-50 hover:bg-orange-50/50 border border-aws-border hover:border-orange-300 text-xs text-slate-700 hover:text-slate-900 transition flex items-center justify-between group cursor-pointer"
             >
               <div>
-                <span class="font-mono text-[10px] text-sky-400 font-semibold block">ARCH-RDS-02</span>
-                <span class="text-xs">Secure Managed RDS PostgreSQL in Private Subnet</span>
+                <span class="font-mono text-[10px] text-blue-600 font-bold block">ARCH-RDS-02</span>
+                <span class="text-xs font-medium">Secure Managed RDS PostgreSQL in Private Subnet</span>
               </div>
-              <i class="fa-solid fa-chevron-right text-[10px] text-slate-600 group-hover:text-slate-300 transition"></i>
+              <i class="fa-solid fa-chevron-right text-[10px] text-slate-400 group-hover:text-orange-600 transition"></i>
             </button>
 
             <button 
               onclick="sendQuickPrompt('Design a serverless REST API with AWS Lambda and DynamoDB in Singapore (ap-southeast-1) with cost estimation and Free Tier eligibility.')" 
-              class="w-full text-left p-2.5 rounded-lg bg-surface-card hover:bg-surface-hover border border-surface-border text-xs text-slate-300 hover:text-white transition flex items-center justify-between group cursor-pointer"
+              class="w-full text-left p-2.5 rounded-lg bg-slate-50 hover:bg-orange-50/50 border border-aws-border hover:border-orange-300 text-xs text-slate-700 hover:text-slate-900 transition flex items-center justify-between group cursor-pointer"
             >
               <div>
-                <span class="font-mono text-[10px] text-amber-400 font-semibold block">ARCH-SRV-03</span>
-                <span class="text-xs">Serverless REST API (Lambda + DynamoDB Pay-per-Request)</span>
+                <span class="font-mono text-[10px] text-emerald-600 font-bold block">ARCH-SRV-03</span>
+                <span class="text-xs font-medium">Serverless REST API (Lambda + DynamoDB Pay-per-Request)</span>
               </div>
-              <i class="fa-solid fa-chevron-right text-[10px] text-slate-600 group-hover:text-slate-300 transition"></i>
+              <i class="fa-solid fa-chevron-right text-[10px] text-slate-400 group-hover:text-orange-600 transition"></i>
             </button>
           </div>
         </div>
@@ -391,12 +387,12 @@
 
       <!-- Right Panel: Output Feed & Inspection -->
       <div class="lg:w-7/12 flex flex-col">
-        <div id="chatBox" class="flex-1 bg-surface-panel border border-surface-border rounded-xl p-4 sm:p-5 overflow-y-auto space-y-4 min-h-[520px] max-h-[720px]">
+        <div id="chatBox" class="flex-1 bg-white border border-aws-border rounded-xl p-4 sm:p-5 overflow-y-auto space-y-4 min-h-[520px] max-h-[720px] shadow-sm">
           
           <!-- Initial Welcome State -->
-          <div class="p-4 rounded-lg bg-surface-card border border-surface-border text-xs text-slate-300 space-y-2">
+          <div class="p-4 rounded-lg bg-slate-50 border border-slate-200 text-xs text-slate-700 space-y-2">
             <div class="flex items-center justify-between">
-              <span class="font-mono text-[11px] text-teal-400 font-semibold uppercase">System Initialized</span>
+              <span class="font-mono text-[11px] text-orange-600 font-bold uppercase">System Initialized</span>
               <span class="font-mono text-[10px] text-slate-500">Autonomous Serverless Agent</span>
             </div>
             <p>
@@ -414,43 +410,43 @@
     <div id="sectionAudit" class="hidden flex-1 flex flex-col space-y-4">
       
       <!-- Preset Vulnerability Benchmark Strip -->
-      <div class="bg-surface-panel border border-surface-border rounded-xl p-3 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-3">
-        <div class="flex items-center space-x-2 text-xs font-mono text-slate-300 shrink-0">
-          <i class="fa-solid fa-shield-virus text-teal-400"></i>
-          <span class="font-semibold uppercase tracking-wider text-[11px]">Security Vulnerability Benchmarks (6 Pillars):</span>
+      <div class="bg-white border border-aws-border rounded-xl p-3 shadow-sm flex flex-col lg:flex-row items-start lg:items-center justify-between gap-3">
+        <div class="flex items-center space-x-2 text-xs font-mono text-slate-800 shrink-0">
+          <i class="fa-solid fa-shield-virus text-orange-600"></i>
+          <span class="font-bold uppercase tracking-wider text-[11px]">Security Vulnerability Benchmarks (6 Pillars):</span>
         </div>
         
         <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 w-full lg:w-auto">
           <button 
             onclick="loadScenario('critical')" 
-            class="px-2.5 py-1.5 rounded-lg bg-surface-card hover:bg-surface-hover border border-surface-border text-left transition group cursor-pointer"
+            class="px-2.5 py-1.5 rounded-lg bg-slate-50 hover:bg-red-50 border border-aws-border hover:border-red-200 text-left transition group cursor-pointer"
           >
-            <span class="font-mono text-[9px] text-red-400 font-bold block">SEC-01 &bull; CRITICAL</span>
-            <span class="text-[11px] text-slate-300 block truncate">SSH & Hardcoded Key</span>
+            <span class="font-mono text-[9px] text-red-600 font-bold block">SEC-01 &bull; CRITICAL</span>
+            <span class="text-[11px] text-slate-800 font-medium block truncate">SSH & Hardcoded Key</span>
           </button>
 
           <button 
             onclick="loadScenario('database')" 
-            class="px-2.5 py-1.5 rounded-lg bg-surface-card hover:bg-surface-hover border border-surface-border text-left transition group cursor-pointer"
+            class="px-2.5 py-1.5 rounded-lg bg-slate-50 hover:bg-amber-50 border border-aws-border hover:border-amber-200 text-left transition group cursor-pointer"
           >
-            <span class="font-mono text-[9px] text-amber-400 font-bold block">SEC-02 &bull; HIGH</span>
-            <span class="text-[11px] text-slate-300 block truncate">Public RDS & S3 Plaintext</span>
+            <span class="font-mono text-[9px] text-amber-700 font-bold block">SEC-02 &bull; HIGH</span>
+            <span class="text-[11px] text-slate-800 font-medium block truncate">Public RDS & S3 Plaintext</span>
           </button>
 
           <button 
             onclick="loadScenario('iam')" 
-            class="px-2.5 py-1.5 rounded-lg bg-surface-card hover:bg-surface-hover border border-surface-border text-left transition group cursor-pointer"
+            class="px-2.5 py-1.5 rounded-lg bg-slate-50 hover:bg-purple-50 border border-aws-border hover:border-purple-200 text-left transition group cursor-pointer"
           >
-            <span class="font-mono text-[9px] text-purple-400 font-bold block">SEC-03 &bull; CRITICAL</span>
-            <span class="text-[11px] text-slate-300 block truncate">Wildcard IAM (*) Role</span>
+            <span class="font-mono text-[9px] text-purple-700 font-bold block">SEC-03 &bull; CRITICAL</span>
+            <span class="text-[11px] text-slate-800 font-medium block truncate">Wildcard IAM (*) Role</span>
           </button>
 
           <button 
             onclick="loadScenario('imds')" 
-            class="px-2.5 py-1.5 rounded-lg bg-surface-card hover:bg-surface-hover border border-surface-border text-left transition group cursor-pointer"
+            class="px-2.5 py-1.5 rounded-lg bg-slate-50 hover:bg-blue-50 border border-aws-border hover:border-blue-200 text-left transition group cursor-pointer"
           >
-            <span class="font-mono text-[9px] text-sky-400 font-bold block">SEC-04 &bull; HIGH</span>
-            <span class="text-[11px] text-slate-300 block truncate">IMDSv1 & Open DB Port</span>
+            <span class="font-mono text-[9px] text-blue-600 font-bold block">SEC-04 &bull; HIGH</span>
+            <span class="text-[11px] text-slate-800 font-medium block truncate">IMDSv1 & Open DB Port</span>
           </button>
         </div>
       </div>
@@ -459,16 +455,16 @@
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 flex-1">
         
         <!-- Left: Code Input Pane -->
-        <div class="lg:col-span-6 flex flex-col space-y-3 bg-surface-panel border border-surface-border rounded-xl p-4">
-          <div class="flex items-center justify-between border-b border-surface-border pb-3">
+        <div class="lg:col-span-6 flex flex-col space-y-3 bg-white border border-aws-border rounded-xl p-4 shadow-sm">
+          <div class="flex items-center justify-between border-b border-aws-border pb-3">
             <div>
               <div class="flex items-center space-x-2">
-                <i class="fa-solid fa-code text-teal-400 text-xs"></i>
-                <h3 class="text-xs font-semibold uppercase tracking-wider text-slate-200 font-mono">Terraform Source (main.tf)</h3>
+                <i class="fa-solid fa-code text-orange-600 text-xs"></i>
+                <h3 class="text-xs font-bold uppercase tracking-wider text-slate-800 font-mono">Terraform Source (main.tf)</h3>
               </div>
               <p class="text-[11px] text-slate-500 mt-0.5">Input HCL code manually, select a benchmark, or upload a local file</p>
             </div>
-            <label class="text-[11px] text-slate-400 hover:text-white cursor-pointer px-2.5 py-1 rounded bg-surface-card border border-surface-border hover:border-slate-500 transition flex items-center space-x-1.5 font-mono">
+            <label class="text-[11px] text-slate-700 hover:text-slate-900 cursor-pointer px-2.5 py-1 rounded bg-slate-50 border border-aws-border hover:border-slate-400 transition flex items-center space-x-1.5 font-mono shadow-xs">
               <i class="fa-solid fa-upload text-[10px]"></i>
               <span>Upload .tf</span>
               <input type="file" id="fileUploadInput" accept=".tf,.txt" class="hidden" onchange="handleFileUpload(event)">
@@ -479,7 +475,7 @@
             id="auditCodeInput" 
             rows="18" 
             placeholder="# Paste your Terraform (.tf) code here or choose a benchmark above...&#10;resource &quot;aws_security_group&quot; &quot;allow_all&quot; {&#10;  ingress {&#10;    from_port   = 22&#10;    to_port     = 22&#10;    protocol    = &quot;tcp&quot;&#10;    cidr_blocks = [&quot;0.0.0.0/0&quot;]&#10;  }&#10;}"
-            class="flex-1 w-full bg-surface-base border border-surface-border rounded-lg p-3 text-xs font-mono text-slate-100 placeholder-slate-600 focus:outline-none focus:border-slate-500 resize-none leading-relaxed"
+            class="flex-1 w-full bg-slate-900 border border-slate-700 rounded-lg p-3 text-xs font-mono text-slate-100 placeholder-slate-500 focus:outline-none focus:border-orange-500 resize-none leading-relaxed"
           ></textarea>
 
           <div class="flex items-center justify-between pt-1">
@@ -487,7 +483,7 @@
             <button 
               id="auditBtn" 
               onclick="handleAuditCode()" 
-              class="px-4 py-2 rounded-lg font-mono text-xs font-semibold bg-teal-500 hover:bg-teal-400 text-slate-950 transition duration-150 flex items-center space-x-2 disabled:opacity-40 cursor-pointer"
+              class="px-4 py-2 rounded-lg font-mono text-xs font-semibold bg-orange-600 hover:bg-orange-500 text-white transition duration-150 flex items-center space-x-2 disabled:opacity-40 cursor-pointer shadow-sm"
             >
               <i class="fa-solid fa-shield-halved text-[11px]"></i>
               <span>Execute DevSecOps Scan</span>
@@ -496,32 +492,32 @@
         </div>
 
         <!-- Right: Audit Findings & Remediation -->
-        <div class="lg:col-span-6 flex flex-col space-y-3 bg-surface-panel border border-surface-border rounded-xl p-4">
-          <div class="flex items-center justify-between border-b border-surface-border pb-3">
+        <div class="lg:col-span-6 flex flex-col space-y-3 bg-white border border-aws-border rounded-xl p-4 shadow-sm">
+          <div class="flex items-center justify-between border-b border-aws-border pb-3">
             <div>
               <div class="flex items-center space-x-2">
-                <i class="fa-solid fa-square-poll-vertical text-teal-400 text-xs"></i>
-                <h3 class="text-xs font-semibold uppercase tracking-wider text-slate-200 font-mono">Static Analysis Report</h3>
+                <i class="fa-solid fa-square-poll-vertical text-orange-600 text-xs"></i>
+                <h3 class="text-xs font-bold uppercase tracking-wider text-slate-800 font-mono">Static Analysis Report</h3>
               </div>
               <p class="text-[11px] text-slate-500 mt-0.5">CIS AWS Foundations & Well-Architected Framework Evaluation</p>
             </div>
-            <span id="auditLatencyBadge" class="hidden font-mono text-[10px] px-2 py-0.5 rounded bg-surface-card text-slate-400 border border-surface-border">0 ms</span>
+            <span id="auditLatencyBadge" class="hidden font-mono text-[10px] px-2 py-0.5 rounded bg-slate-100 text-slate-700 border border-slate-200">0 ms</span>
           </div>
 
-          <div id="auditResultBox" class="flex-1 min-h-[400px] max-h-[580px] overflow-y-auto space-y-3 text-xs text-slate-300">
+          <div id="auditResultBox" class="flex-1 min-h-[400px] max-h-[580px] overflow-y-auto space-y-3 text-xs text-slate-700">
             <!-- Empty state -->
-            <div class="h-full flex flex-col items-center justify-center text-center p-8 text-slate-500 space-y-2.5">
-              <div class="w-10 h-10 rounded-lg bg-surface-card border border-surface-border flex items-center justify-center text-slate-400 text-base">
+            <div class="h-full flex flex-col items-center justify-center text-center p-8 text-slate-400 space-y-2.5">
+              <div class="w-10 h-10 rounded-lg bg-slate-50 border border-slate-200 flex items-center justify-center text-slate-400 text-base">
                 <i class="fa-solid fa-radar"></i>
               </div>
-              <p class="text-xs font-medium text-slate-300">No Analysis Executed</p>
+              <p class="text-xs font-semibold text-slate-700">No Analysis Executed</p>
               <p class="max-w-xs text-[11px] text-slate-500 leading-normal">Select a benchmark preset or paste Terraform code on the left, then click Execute DevSecOps Scan.</p>
             </div>
           </div>
 
           <!-- Hardened Code Download Bar -->
-          <div id="hardenedDownloadSection" class="hidden pt-3 border-t border-surface-border flex items-center justify-between">
-            <span class="text-xs text-emerald-400 flex items-center space-x-1.5 font-mono">
+          <div id="hardenedDownloadSection" class="hidden pt-3 border-t border-aws-border flex items-center justify-between">
+            <span class="text-xs text-emerald-700 font-mono flex items-center space-x-1.5 font-semibold">
               <i class="fa-solid fa-check text-[11px]"></i>
               <span>Hardened Terraform Saved to S3</span>
             </span>
@@ -530,7 +526,7 @@
               href="#" 
               target="_blank" 
               download="main_hardened.tf" 
-              class="px-3.5 py-1.5 rounded-lg bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 text-xs font-mono font-medium flex items-center space-x-1.5 transition"
+              class="px-3.5 py-1.5 rounded-lg bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-300 text-xs font-mono font-medium flex items-center space-x-1.5 transition shadow-xs"
             >
               <i class="fa-solid fa-download text-[10px]"></i>
               <span>Download main_hardened.tf</span>
@@ -668,17 +664,17 @@ resource "aws_instance" "backend_server" {
       const secGen = document.getElementById("sectionGenerate");
       const secAud = document.getElementById("sectionAudit");
 
-      const activeClasses = "bg-surface-active text-white border border-surface-border shadow-sm";
-      const inactiveClasses = "text-slate-400 hover:text-slate-200 border-transparent";
+      const activeClasses = "bg-white text-orange-700 border border-slate-200 shadow-sm font-semibold";
+      const inactiveClasses = "text-slate-600 hover:text-slate-900 border-transparent font-medium";
 
       if (tab === 'generate') {
-        tabGen.className = `px-3.5 py-1.5 rounded-md text-xs font-medium font-mono transition flex items-center space-x-2 ${activeClasses}`;
-        tabAud.className = `px-3.5 py-1.5 rounded-md text-xs font-medium font-mono transition flex items-center space-x-2 ${inactiveClasses}`;
+        tabGen.className = `px-3.5 py-1.5 rounded-md text-xs font-mono transition flex items-center space-x-2 ${activeClasses}`;
+        tabAud.className = `px-3.5 py-1.5 rounded-md text-xs font-mono transition flex items-center space-x-2 ${inactiveClasses}`;
         secGen.classList.remove("hidden");
         secAud.classList.add("hidden");
       } else {
-        tabAud.className = `px-3.5 py-1.5 rounded-md text-xs font-medium font-mono transition flex items-center space-x-2 ${activeClasses}`;
-        tabGen.className = `px-3.5 py-1.5 rounded-md text-xs font-medium font-mono transition flex items-center space-x-2 ${inactiveClasses}`;
+        tabAud.className = `px-3.5 py-1.5 rounded-md text-xs font-mono transition flex items-center space-x-2 ${activeClasses}`;
+        tabGen.className = `px-3.5 py-1.5 rounded-md text-xs font-mono transition flex items-center space-x-2 ${inactiveClasses}`;
         secAud.classList.remove("hidden");
         secGen.classList.add("hidden");
       }
@@ -736,10 +732,10 @@ resource "aws_instance" "backend_server" {
       const msgDiv = document.createElement("div");
       msgDiv.className = "flex flex-col space-y-1.5 items-end";
       msgDiv.innerHTML = `
-        <div class="flex items-center space-x-2 text-[10px] font-mono text-slate-500">
+        <div class="flex items-center space-x-2 text-[10px] font-mono text-slate-500 font-semibold">
           <span>OPERATOR REQUEST</span>
         </div>
-        <div class="bg-surface-card border border-surface-border text-slate-200 p-3 rounded-lg text-xs font-mono max-w-xl">
+        <div class="bg-orange-50 border border-orange-200 text-orange-950 p-3 rounded-lg text-xs font-mono max-w-xl shadow-xs">
           ${escapeHtml(text)}
         </div>
       `;
@@ -772,12 +768,12 @@ resource "aws_instance" "backend_server" {
       let downloadBar = "";
       if (data.download_url && data.terraform_code) {
         downloadBar = `
-          <div class="mt-4 pt-3 border-t border-surface-border flex items-center justify-between">
-            <span class="text-xs text-emerald-400 font-mono flex items-center space-x-1.5">
+          <div class="mt-4 pt-3 border-t border-aws-border flex items-center justify-between">
+            <span class="text-xs text-emerald-700 font-mono font-semibold flex items-center space-x-1.5">
               <i class="fa-solid fa-check text-[11px]"></i>
               <span>Terraform Code & FinOps Saved to S3</span>
             </span>
-            <a href="${data.download_url}" target="_blank" download="main.tf" class="px-3 py-1.5 rounded bg-surface-base hover:bg-surface-hover border border-surface-border text-slate-300 hover:text-white text-xs font-mono flex items-center space-x-1.5 transition">
+            <a href="${data.download_url}" target="_blank" download="main.tf" class="px-3 py-1.5 rounded bg-orange-50 hover:bg-orange-100 border border-orange-200 text-orange-800 text-xs font-mono font-medium flex items-center space-x-1.5 transition shadow-xs">
               <i class="fa-solid fa-download text-[10px]"></i>
               <span>Download main.tf</span>
             </a>
@@ -786,11 +782,11 @@ resource "aws_instance" "backend_server" {
       }
 
       msgDiv.innerHTML = `
-        <div class="bg-surface-panel border border-surface-border rounded-xl p-4 sm:p-5 space-y-3">
-          <div class="flex items-center justify-between border-b border-surface-border pb-2.5 text-[11px] font-mono text-slate-400">
+        <div class="bg-white border border-aws-border rounded-xl p-4 sm:p-5 space-y-3 shadow-xs">
+          <div class="flex items-center justify-between border-b border-aws-border pb-2.5 text-[11px] font-mono text-slate-500">
             <div class="flex items-center space-x-2">
-              <span class="w-1.5 h-1.5 rounded-full bg-teal-400"></span>
-              <span class="text-slate-300 font-semibold uppercase tracking-wider">${data.model || 'Amazon Nova Micro'}</span>
+              <span class="w-2 h-2 rounded-full bg-orange-500"></span>
+              <span class="text-slate-800 font-bold uppercase tracking-wider">${data.model || 'Amazon Nova Micro'}</span>
             </div>
             <div class="flex items-center space-x-3 text-slate-500">
               <span>Latency: ${data.latency_ms || 0} ms</span>
@@ -813,9 +809,9 @@ resource "aws_instance" "backend_server" {
       const id = "loading-" + Date.now();
       const msgDiv = document.createElement("div");
       msgDiv.id = id;
-      msgDiv.className = "p-3.5 rounded-lg bg-surface-panel border border-surface-border text-xs text-slate-400 flex items-center space-x-2.5 font-mono";
+      msgDiv.className = "p-3.5 rounded-lg bg-orange-50 border border-orange-200 text-xs text-orange-900 flex items-center space-x-2.5 font-mono shadow-xs";
       msgDiv.innerHTML = `
-        <i class="fa-solid fa-circle-notch fa-spin text-teal-400 text-xs"></i>
+        <i class="fa-solid fa-circle-notch fa-spin text-orange-600 text-xs"></i>
         <span>Synthesizing cloud architecture & calculating regional FinOps spend...</span>
       `;
       chatBox.appendChild(msgDiv);
@@ -824,7 +820,7 @@ resource "aws_instance" "backend_server" {
 
     function appendErrorBubble(text) {
       const msgDiv = document.createElement("div");
-      msgDiv.className = "p-3 rounded-lg bg-red-950/30 border border-red-900/50 text-xs text-red-300 font-mono";
+      msgDiv.className = "p-3 rounded-lg bg-red-50 border border-red-200 text-xs text-red-800 font-mono";
       msgDiv.innerHTML = `<span class="font-bold uppercase tracking-wider block mb-1">Execution Alert:</span>${escapeHtml(text)}`;
       chatBox.appendChild(msgDiv);
     }
@@ -857,9 +853,9 @@ resource "aws_instance" "backend_server" {
       auditBtn.disabled = true;
       downloadSection.classList.add("hidden");
       resultBox.innerHTML = `
-        <div class="h-full flex flex-col items-center justify-center text-center p-8 text-slate-400 space-y-2.5 font-mono">
-          <i class="fa-solid fa-circle-notch fa-spin text-xl text-teal-400"></i>
-          <p class="text-xs font-semibold text-slate-200">Executing Static DevSecOps Inspection...</p>
+        <div class="h-full flex flex-col items-center justify-center text-center p-8 text-slate-500 space-y-2.5 font-mono">
+          <i class="fa-solid fa-circle-notch fa-spin text-xl text-orange-600"></i>
+          <p class="text-xs font-bold text-slate-800">Executing Static DevSecOps Inspection...</p>
           <p class="text-[11px] text-slate-500">Evaluating against CIS AWS Benchmark & Well-Architected Security Pillars</p>
         </div>
       `;
@@ -878,7 +874,7 @@ resource "aws_instance" "backend_server" {
 
           const parsedReply = formatMarkdown(data.reply);
           resultBox.innerHTML = `
-            <div class="bg-surface-panel border border-surface-border p-4 rounded-lg space-y-3">
+            <div class="bg-white border border-aws-border p-4 rounded-lg space-y-3 shadow-xs">
               <div class="markdown-content">
                 ${parsedReply}
               </div>
@@ -890,10 +886,10 @@ resource "aws_instance" "backend_server" {
             downloadSection.classList.remove("hidden");
           }
         } else if (data.error) {
-          resultBox.innerHTML = `<div class="p-3 rounded bg-red-950/30 border border-red-900/50 text-xs text-red-300 font-mono">Scan Error: ${escapeHtml(data.error)}</div>`;
+          resultBox.innerHTML = `<div class="p-3 rounded bg-red-50 border border-red-200 text-xs text-red-800 font-mono">Scan Error: ${escapeHtml(data.error)}</div>`;
         }
       } catch (err) {
-        resultBox.innerHTML = `<div class="p-3 rounded bg-red-950/30 border border-red-900/50 text-xs text-red-300 font-mono">Network Connection Error: ${escapeHtml(err.message)}</div>`;
+        resultBox.innerHTML = `<div class="p-3 rounded bg-red-50 border border-red-200 text-xs text-red-800 font-mono">Network Connection Error: ${escapeHtml(err.message)}</div>`;
       } finally {
         auditBtn.disabled = false;
       }
